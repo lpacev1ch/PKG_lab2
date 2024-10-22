@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Images</title>
+</head>
+<body>
+    <h1>Upload Images for Metadata Extraction</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="images" multiple>
+        <button type="submit">Upload</button>
+    </form>
+</body>
+</html>
