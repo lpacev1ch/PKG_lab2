@@ -19,7 +19,7 @@ def image_metadata(image_path):
     return metadata
 
 def upload_images(request):
-    if request.method == "POST" and request.FILES.getlist('images'):
+    if request.method == 'POST' and request.FILES.getlist('images'):
         files = request.FILES.getlist('images')
         fs = FileSystemStorage()
         metadata_list = []
@@ -27,9 +27,17 @@ def upload_images(request):
         for file in files:
             filename = fs.save(file.name, file)
             file_path = fs.path(filename)
-            metadata = image_metadata(file_path)
+            img = Image.open(file_path)
+            metadata = {
+                "Filename": file.name,
+                "Size_pixels": img.size,
+                "Resolution_dpi": img.info.get("dpi", "Not available"),
+                "Color_depth": img.mode, 
+                "Format": img.format,
+            }
             metadata_list.append(metadata)
 
-        return render(request, "imageprocessor/results.html", {"metadata_list": metadata_list})
+        return render(request, 'imageprocessor/results.html', {'metadata_list': metadata_list})
 
-    return render(request, "imageprocessor/upload.html")
+    return render(request, 'imageprocessor/upload.html')
+

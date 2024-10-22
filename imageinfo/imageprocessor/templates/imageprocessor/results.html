@@ -9,19 +9,17 @@
         <tr>
             <th>Filename</th>
             <th>Size (Pixels)</th>
-            <th>Resolution (dpi)</th>
+            <th>Resolution (DPI)</th>
             <th>Color Depth</th>
             <th>Format</th>
-            <th>Compression</th>
         </tr>
         {% for metadata in metadata_list %}
         <tr>
             <td>{{ metadata.Filename }}</td>
-            <td>{{ metadata.Size (pixels) }}</td>
-            <td>{{ metadata.Resolution (dpi) }}</td>
-            <td>{{ metadata.Color depth (mode) }}</td>
+            <td>{{ metadata.Size_pixels }}</td> 
+            <td>{{ metadata.Resolution_dpi }}</td> 
+            <td>{{ metadata.Color_depth }}</td>
             <td>{{ metadata.Format }}</td>
-            <td>{{ metadata.Compression }}</td>
         </tr>
         {% endfor %}
     </table>
